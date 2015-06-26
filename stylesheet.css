@@ -36,11 +36,14 @@ body {
 }
 .skillitem {
 	background-color: #FF3300;
-	width: 7%;
+	width: 9%;
 	border: 2px solid black;
 	border-radius: 5px;
 	display: inline-block;
 	margin: 1%;
 	opacity: 0.5;
+}
+div > * {
+	vertical-align: middle;
 }
 
