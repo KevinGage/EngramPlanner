@@ -4,13 +4,22 @@ $(document).ready(function() {
 	$.getJSON('skills.json', function(data) {
         	skills = data;
 		buildSkillsTable();
-    	});
+    	});	
 });
 
 function buildSkillsTable() {
 	$.each(skills.skills, function(key, val) {
-		//$('#body').append(key.toString());
-		$('#body').append(val.skillName);
+		var skillItem = document.createElement("div");   				
+		$(skillItem).data(val);
+		skillItem.innerHTML = $(skillItem).data("skillName"); 
+		$(skillItem).addClass("skillitem");
+		$('#body').append(skillItem);
 	});
-	$('#body').append("wrote some things");
+
+
+	$(".skillitem").hover(function() {
+		$(this).animate({opacity: '1'});
+	}, function() { 
+		$(this).animate({opacity: '0.5'});
+	});
 };
