@@ -37,7 +37,6 @@ body {
 .skillitem {
 	background-color: #FF3300;
 	width: 7%;
-	height: 50px;
 	border: 2px solid black;
 	border-radius: 5px;
 	display: inline-block;
