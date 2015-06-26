@@ -1,0 +1,10 @@
+{
+	"skills":[
+		{"skillName": "abc", "level":1, "engrams":5,"image":"./images/abc.png", "required":["def","ghi"], "selected":false},
+		{"skillName": "def", "level":2, "engrams":15,"image":"./images/def.png", "selected":false},
+		{"skillName": "ghi", "level":1, "engrams":5,"image":"./images/abc.png", "required":["def","ghi"], "selected":false},
+		{"skillName": "jkl", "level":1, "engrams":5,"image":"./images/abc.png", "required":["def","ghi"], "selected":false},
+		{"skillName": "mno", "level":1, "engrams":5,"image":"./images/abc.png", "required":["def","ghi"], "selected":false},
+		{"skillName": "pqr", "level":1, "engrams":5,"image":"./images/abc.png", "required":["def","ghi"], "selected":false}
+	]	
+}
