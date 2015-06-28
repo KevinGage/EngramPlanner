@@ -33,26 +33,25 @@ function buildSkillsTable() {
 	});
 
 	$(".skillitem").hover(function() {
-		if (!($(this).hasClass( "selected" ))) {
+		if (!($(this).data("selected"))) {
 			$(this).animate({opacity: '1'}, 300);
 		}
 	}, function() {
-		if (!($(this).hasClass( "selected" ))) {
+		if (!($(this).data("selected"))) {
 			$(this).animate({opacity: '0.5'}, 300);
 		}
 	});
 	
 	$(".skillitem").click(function() {
-		if (($(this).hasClass( "selected" ))) {
-			$(this).removeClass( "selected" );
-			$(this).animate({opacity: '0.5'}, 300);
+		if (($(this).data("selected"))) {
+			deselectSkill($(this));
 		}
 		else {
-			$(this).addClass("selected");
+			selectSkill($(this));
 		}
 		
 		if (hasOwnProperty.call($(this).data(), "requiredBy")) {
-			checkHidden($(this).data("requiredBy"));
+			checkHidden($.data(this, "requiredBy"));
 		}
 	})
 
@@ -123,7 +122,7 @@ function checkMyRequirements(skill) {
 	var checkMyRequirements = $("#" + skill);
 
 	for (var i = 0; i < checkMyRequirements.data("requires").length; i++) {
-		if ( !($("#" + checkMyRequirements.data("requires")[i]).hasClass( "selected" )))  {
+		if ( !($("#" + checkMyRequirements.data("requires")[i]).data( "selected" )))  {
 			show = false;
 		}
 	}
@@ -134,4 +133,18 @@ function checkMyRequirements(skill) {
 	else{
 		checkMyRequirements.hide(400);
 	}
+	return true;
+}
+
+function selectSkill(skill) {
+	skill.data("selected", true);
+	$(skill).addClass("selected");
+	return true;
+}
+
+function deselectSkill(skill) {
+	skill.data("selected", false);
+	$(skill).removeClass( "selected" );
+	$(skill).animate({opacity: '0.5'}, 300);
+	return true;
 }
