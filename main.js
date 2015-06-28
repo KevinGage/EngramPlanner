@@ -1,5 +1,5 @@
 var skills = {};
-var character = {"level":0, "engrams": 0};
+var character = {"level":0, "engrams": 0, "spent":0};
 
 $(document).ready(function() {
 	$.getJSON('skills.json', function(data) {
@@ -25,6 +25,10 @@ function buildSkillsTable() {
 		$(skillItem).css("background","url(" + $(skillItem).data("image") + ")");
 		$(skillItem).css("background-size", "contain");
 		$('#body').append(skillItem);
+		
+		if (hasOwnProperty.call(this, "requires")) {
+			$(skillItem).hide();
+		}
 	});
 
 	$(".skillitem").hover(function() {
