@@ -20,6 +20,7 @@ function buildSkillsTable() {
 		var skillItem = document.createElement("div");
 		$(skillItem).data(val);
 		skillItem.innerHTML = $(skillItem).data("skillName");
+		$(skillItem).attr("id", $(skillItem).data("skillName").split(" ").join(""));
 		$(skillItem).addClass("skillitem");
 		$(skillItem).css("background","url(img/engram/Spear_Icon.png)");
 		$(skillItem).css("background","url(" + $(skillItem).data("image") + ")");
@@ -48,6 +49,10 @@ function buildSkillsTable() {
 		}
 		else {
 			$(this).addClass("selected");
+		}
+		
+		if (hasOwnProperty.call($(this).data(), "requiredBy")) {
+			checkHidden($(this).data("requiredBy"));
 		}
 	})
 
@@ -105,4 +110,28 @@ function totalEngrams() {
 		break;
 	}
 	$("#totalEngrams").text(character.engrams);
+}
+
+function checkHidden(skill) {
+	for (var i =0; i < skill.length; i++) {
+		checkMyRequirements(skill[i]);
+	}
+}
+
+function checkMyRequirements(skill) {
+	var show = true;
+	var checkMyRequirements = $("#" + skill);
+
+	for (var i = 0; i < checkMyRequirements.data("requires").length; i++) {
+		if ( !($("#" + checkMyRequirements.data("requires")[i]).hasClass( "selected" )))  {
+			show = false;
+		}
+	}
+	
+	if (show){
+		checkMyRequirements.show(400);
+	}
+	else{
+		checkMyRequirements.hide(400);
+	}
 }

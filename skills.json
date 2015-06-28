@@ -7,7 +7,7 @@
 		{"skillName": "Cloth Pants", "level":2, "engrams":3,"image":"img/engram/BurlapLegs_Icon.png", "selected":false},
 		{"skillName": "Cloth Shirt", "level":2, "engrams":3,"image":"img/engram/BurlapShirt_Icon.png", "selected":false},
 		{"skillName": "Thatch Foundation", "level":2, "engrams":3,"image":"img/engram/ThatchFloor_Icon.png", "selected":false},
-		{"skillName": "Thatch Doorframe", "level":2, "engrams":3,"image":"img/engram/ThatchDoorway_Icon.png", "selected":false, "requiredBy":["Thatch Door"]},
+		{"skillName": "Thatch Doorframe", "level":2, "engrams":3,"image":"img/engram/ThatchDoorway_Icon.png", "selected":false, "requiredBy":["ThatchDoor"]},
 		{"skillName": "Waterskin", "level":3, "engrams":6,"image":"img/engram/Waterskin_Icon.png", "selected":false},
 		{"skillName": "Cloth Gloves", "level":3, "engrams":3,"image":"img/engram/BurlapGloves_Icon.png", "selected":false},
 		{"skillName": "Cloth Boots", "level":3, "engrams":3,"image":"img/engram/BurlapBoots_Icon.png", "selected":false},
@@ -16,7 +16,7 @@
 		{"skillName": "Hide Sleeping Bag", "level":3, "engrams":3,"image":"img/engram/SleepingBag_Icon.png", "selected":false},
 		{"skillName": "Thatch Roof", "level":3, "engrams":3,"image":"img/engram/ThatchRoof_Icon.png", "selected":false},	
 		{"skillName": "Thatch Wall", "level":3, "engrams":3,"image":"img/engram/ThatchWall_Icon.png", "selected":false},
-		{"skillName": "Thatch Door", "level":3, "engrams":3,"image":"img/engram/ThatchDoor_Icon.png", "selected":false, "requires":["Thatch Doorframe"]},
+		{"skillName": "Thatch Door", "level":3, "engrams":3,"image":"img/engram/ThatchDoor_Icon.png", "selected":false, "requires":["ThatchDoorframe"]},
 		{"skillName": "Slingshot", "level":5, "engrams":6,"image":"img/engram/Slingshot_Icon.png", "selected":false},
 		{"skillName": "Storage Box", "level":5, "engrams":6,"image":"img/engram/SmallStorage_Icon.png", "selected":false}
 	]	
