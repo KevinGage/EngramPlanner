@@ -148,6 +148,22 @@ function selectSkill(skill) {
 		return true;
 	}
 	else{
+		skill.toggleClass("transition");
+		$("#remainingEngramsDiv").toggleClass("transition");
+		
+		skill.toggleClass("error");
+		$("#remainingEngramsDiv").toggleClass("error");
+		
+		setTimeout(function (){
+			skill.toggleClass("error");
+			$("#remainingEngramsDiv").toggleClass("error");
+			skill.toggleClass("transition");
+			$("#remainingEngramsDiv").toggleClass("transition");
+		}, 750);
+
+		
+		
+
 		return false;
 	}
 }
