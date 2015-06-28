@@ -1,5 +1,5 @@
 # EngramPlanner
-ARK engram character planner
+ARK engram character planner:
 
 A work in progress planner to help players of ARK: Survival Evolved plan their character skills.
 
