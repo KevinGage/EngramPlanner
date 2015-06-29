@@ -1,0 +1,19 @@
+Hide all skills under chosen level
+
+Add all other skills to json
+
+decide how scrolling will work
+
+restyle the rest of the background
+
+Add disclaimer about ark ownership
+
+re-style header
+
+add ETG logo
+
+Add option to not hide anything
+
+add section in header.  When hover over skill show desctiption in header section.
+
+add text to point people at etg website
