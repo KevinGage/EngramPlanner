@@ -2,14 +2,14 @@ var skills = {};
 var character = {"level":0, "engrams": 0, "spent":0};
 
 $(document).ready(function() {
-	$.getJSON('json/skills.json', function(data) {
-        skills = data;
-	buildSkillsTable();
-    });	
-	
 	fillLevels();
 	totalEngrams();
-	
+
+	$.getJSON('json/skills.json', function(data) {
+		skills = data;
+		buildSkillsTable();
+	});
+
 	$('#levelSelect').on('change', function() {
 		totalEngrams();
 	});
@@ -30,6 +30,10 @@ function buildSkillsTable() {
 		$(skillItem).append(skillItemText);
 		
 		if (hasOwnProperty.call(this, "requires")) {
+			$(skillItem).hide();
+		}
+
+		if (val.level > character.level) {
 			$(skillItem).hide();
 		}
 	});
@@ -82,46 +86,46 @@ function totalEngrams() {
 	var x = parseInt($("#levelSelect option:selected").val());
 	character.level = x;
 	switch(true) {
-    case (x === 1):
-		character.engrams = 0;
-        break;
-    case (x >= 2 && x < 10):
-        character.engrams = ((x-1) * 8);
-        break;
-	case (x >= 10 && x < 20):
-        character.engrams = (64 + ((x - 9) * 12));
-        break;
-	case (x >= 20 && x < 30):
-        character.engrams = (184 + ((x - 19) * 16));
-        break;
-	case (x >= 30 && x < 40):
-        character.engrams = (344 + ((x - 29) * 20));
-        break;
-	case (x >= 40 && x < 50):
-        character.engrams = (544 + ((x - 39) * 24));
-        break;
-	case (x >= 50 && x < 60):
-        character.engrams = (784 + ((x - 49) * 28));
-        break;
-	case (x >= 60 && x < 65):
-        character.engrams = (1064 + ((x - 59) * 40));
-        break;
-	case (x === 65):
-		character.engrams = (1265);       
-	default:
-		$("#totalEngrams").text("you a haxor");
-		break;
+		case (x === 1):
+			character.engrams = 0;
+			break;
+		case (x >= 2 && x < 10):
+			character.engrams = ((x-1) * 8);
+			break;
+		case (x >= 10 && x < 20):
+			character.engrams = (64 + ((x - 9) * 12));
+			break;
+		case (x >= 20 && x < 30):
+			character.engrams = (184 + ((x - 19) * 16));
+			break;
+		case (x >= 30 && x < 40):
+			character.engrams = (344 + ((x - 29) * 20));
+			break;
+		case (x >= 40 && x < 50):
+			character.engrams = (544 + ((x - 39) * 24));
+			break;
+		case (x >= 50 && x < 60):
+			character.engrams = (784 + ((x - 49) * 28));
+			break;
+		case (x >= 60 && x < 65):
+			character.engrams = (1064 + ((x - 59) * 40));
+			break;
+		case (x === 65):
+			character.engrams = (1265);       
+		default:
+			$("#totalEngrams").text("you a haxor");
+			break;
 	}
 	$("#totalEngrams").text(character.engrams);
 }
 
-function checkHidden(skill) {
+function checkHidden(skill) {  // Takes in an array of hidden skills.  checks each skill to see if they should be unhidden.
 	for (var i =0; i < skill.length; i++) {
 		checkMyRequirements(skill[i]);
 	}
 }
 
-function checkMyRequirements(skill) {
+function checkMyRequirements(skill) {  //takes in a skill name.  Checks the skill requirements to see if it should be unhidden. //add check level requirements for unhiding.
 	var show = true;
 	var checkMyRequirements = $("#" + skill);
 
@@ -164,9 +168,6 @@ function selectSkill(skill) {
 			skill.toggleClass("transition");
 			$("#remainingEngramsDiv").toggleClass("transition");			
 		}, 750);
-
-		
-	
 
 		return false;
 	}

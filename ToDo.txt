@@ -18,4 +18,6 @@ add section in header.  When hover over skill show desctiption in header section
 
 add text to point people at etg website
 
+change animation on "can't select skill"?
+
 add ability to save character build through get requests
