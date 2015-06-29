@@ -194,29 +194,11 @@ function deselectSkill(skill) { //takes in a jquery object skill div. runs de-se
 }
 
 function updateEngramDisplay() {
-//	$("#spentEngrams").text(character.spent);
-//	$("#remainingEngrams").text(character.engrams - character.spent);
-
-
 	var oldSpentValue = parseInt($("#spentEngrams").text());
 	var oldRemainingValue = parseInt($("#remainingEngrams").text());
 	var newRemainingValue = (character.engrams - character.spent);
 
-
-	$({someValue: oldSpentValue}).animate({someValue: character.spent}, {
-		duration: 500,
-		easing:'linear',
-		step: function() {
-			$('#spentEngrams').text(Math.round(this.someValue));
-		}
-	});
-
-	$({someValue: oldRemainingValue}).animate({someValue: newRemainingValue}, {
-		duration: 500,
-		easing:'linear',
-		step: function() {
-			$('#remainingEngrams').text(Math.round(this.someValue));
-		}
-	});
-
+	$('#spentEngrams').prop('number', oldSpentValue).animateNumber({number: character.spent},200);
+	$('#remainingEngrams').prop('number', oldRemainingValue).animateNumber({number: newRemainingValue},200);
+	
 }
