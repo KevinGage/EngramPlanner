@@ -1,4 +1,8 @@
-Hide all skills under chosen level
+re-style header
+
+add ETG logo
+
+add section in header.  When hover over skill show desctiption in header section.
 
 Add all other skills to json
 
@@ -8,16 +12,12 @@ restyle the rest of the background
 
 Add disclaimer about ark ownership
 
-re-style header
-
-add ETG logo
-
 Add option to not hide anything
-
-add section in header.  When hover over skill show desctiption in header section.
 
 add text to point people at etg website
 
 change animation on "can't select skill"?
+
+change any other animations for performance?
 
 add ability to save character build through get requests

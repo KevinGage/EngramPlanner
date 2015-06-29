@@ -12,10 +12,15 @@ $(document).ready(function() {
 
 	$('#levelSelect').on('change', function() {
 		totalEngrams();
+
+		$("#body>div").each(function() {
+			checkRequirements($(this));
+		});
+
 	});
 });
 
-function buildSkillsTable() {
+function buildSkillsTable() {  //builds main table of skill divs
 	$.each(skills.skills, function(key, val) {
 		var skillItem = document.createElement("div");
 		$(skillItem).data(val);
@@ -119,36 +124,39 @@ function totalEngrams() {
 
 function checkSkillDependencies(skill) {  // Takes in an array of hidden skills.  checks each skill to see if they should be unhidden.
 	for (var i =0; i < skill.length; i++) {
-		checkMyRequirements(skill[i]);
+		var itemToBeChecked = $("#" + skill[i]);
+		checkRequirements(itemToBeChecked);
 	}
 }
 
-function checkMyRequirements(skill) {  //takes in a skill name.  Checks the skill requirements to see if it should be unhidden by looking at the div with id #skill. //add check level requirements for unhiding.
+function checkRequirements(skill) {  //takes in a skill jquery object.  Checks the skill requirements to see if it should be unhidden by looking at the div with id #skill.
 	var show = true;
-	var checkMyRequirements = $("#" + skill);
 
-	if (hasOwnProperty.call(checkMyRequirements.data(), "requires")) { //////////////
-		for (var i = 0; i < checkMyRequirements.data("requires").length; i++) {
-			if ( !($("#" + checkMyRequirements.data("requires")[i]).data( "selected" )))  {
+	if (hasOwnProperty.call(skill.data(), "requires")) {
+		for (var i = 0; i < skill.data("requires").length; i++) {
+			if ( !($("#" + skill.data("requires")[i]).data( "selected" )))  {
 				show = false;
 			}
 		}
 	}
 
-	if (checkMyRequirements.data("level") > character.level) {
+	if (skill.data("level") > character.level) {
 		show = false;
 	}
 	
 	if (show){
-		checkMyRequirements.show(200);
+		skill.show(200);
 	}
 	else{
-		checkMyRequirements.hide(200);
+		if (skill.data("selected")) {
+			deselectSkill(skill);
+		}
+		skill.hide(200);
 	}
 	return true;
 }
 
-function selectSkill(skill) {
+function selectSkill(skill) {  //takes in a jquery object skill div. checks requirements to select. then runs select logic 
 	if ((character.engrams - character.spent - skill.data("engrams")) >= 0) {
 		character.spent += skill.data("engrams");
 		$("#spentEngrams").text(character.spent);
@@ -177,7 +185,7 @@ function selectSkill(skill) {
 	}
 }
 
-function deselectSkill(skill) {
+function deselectSkill(skill) { //takes in a jquery object skill div. runs de-select logic
 	character.spent -= skill.data("engrams");
 	$("#spentEngrams").text(character.spent);
 	$("#remainingEngrams").text(character.engrams - character.spent);
