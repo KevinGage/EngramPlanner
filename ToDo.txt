@@ -10,11 +10,13 @@ decide how scrolling will work
 
 restyle the rest of the background
 
+fix negative remaining when switching to negative level
+
 Add disclaimer about ark ownership
 
 Add option to not hide anything
 
-add text to point people at etg website
+add text and link to point people at etg website
 
 change animation on "can't select skill"?
 
