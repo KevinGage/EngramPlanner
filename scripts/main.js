@@ -4,7 +4,7 @@ var character = {"level":0, "engrams": 0, "spent":0};
 $(document).ready(function() {
 	$.getJSON('json/skills.json', function(data) {
         skills = data;
-		buildSkillsTable();
+	buildSkillsTable();
     });	
 	
 	fillLevels();
@@ -72,6 +72,8 @@ function fillLevels() {
 			.append($('<option>', { i : i })
 			.text(i)); 
 	}
+
+	$('#levelSelect option:last-child').attr('selected', 'selected');
 }
 
 function totalEngrams() {
