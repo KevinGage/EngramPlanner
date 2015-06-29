@@ -56,9 +56,7 @@ function buildSkillsTable() {
 			selectSkill($(this));
 		}
 		
-		if (hasOwnProperty.call($(this).data(), "requiredBy")) {
-			checkHidden($.data(this, "requiredBy"));
-		}
+		checkSkillDependencies($.data(this, "requiredBy"));
 	})
 
 	$(window).resize(function() {
@@ -119,27 +117,33 @@ function totalEngrams() {
 	$("#totalEngrams").text(character.engrams);
 }
 
-function checkHidden(skill) {  // Takes in an array of hidden skills.  checks each skill to see if they should be unhidden.
+function checkSkillDependencies(skill) {  // Takes in an array of hidden skills.  checks each skill to see if they should be unhidden.
 	for (var i =0; i < skill.length; i++) {
 		checkMyRequirements(skill[i]);
 	}
 }
 
-function checkMyRequirements(skill) {  //takes in a skill name.  Checks the skill requirements to see if it should be unhidden. //add check level requirements for unhiding.
+function checkMyRequirements(skill) {  //takes in a skill name.  Checks the skill requirements to see if it should be unhidden by looking at the div with id #skill. //add check level requirements for unhiding.
 	var show = true;
 	var checkMyRequirements = $("#" + skill);
 
-	for (var i = 0; i < checkMyRequirements.data("requires").length; i++) {
-		if ( !($("#" + checkMyRequirements.data("requires")[i]).data( "selected" )))  {
-			show = false;
+	if (hasOwnProperty.call(checkMyRequirements.data(), "requires")) { //////////////
+		for (var i = 0; i < checkMyRequirements.data("requires").length; i++) {
+			if ( !($("#" + checkMyRequirements.data("requires")[i]).data( "selected" )))  {
+				show = false;
+			}
 		}
+	}
+
+	if (checkMyRequirements.data("level") > character.level) {
+		show = false;
 	}
 	
 	if (show){
-		checkMyRequirements.show(400);
+		checkMyRequirements.show(200);
 	}
 	else{
-		checkMyRequirements.hide(400);
+		checkMyRequirements.hide(200);
 	}
 	return true;
 }
