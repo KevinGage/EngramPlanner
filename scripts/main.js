@@ -19,13 +19,15 @@ function buildSkillsTable() {
 	$.each(skills.skills, function(key, val) {
 		var skillItem = document.createElement("div");
 		$(skillItem).data(val);
-		skillItem.innerHTML = $(skillItem).data("skillName");
 		$(skillItem).attr("id", $(skillItem).data("skillName").split(" ").join(""));
 		$(skillItem).addClass("skillitem");
 		$(skillItem).css("background","url(img/engram/Spear_Icon.png)");
 		$(skillItem).css("background","url(" + $(skillItem).data("image") + ")");
 		$(skillItem).css("background-size", "contain");
 		$('#body').append(skillItem);
+		var skillItemText = document.createElement("span");
+		skillItemText.innerHTML = $(skillItem).data("skillName");
+		$(skillItem).append(skillItemText);
 		
 		if (hasOwnProperty.call(this, "requires")) {
 			$(skillItem).hide();
@@ -160,11 +162,11 @@ function selectSkill(skill) {
 			skill.toggleClass("error");
 			$("#remainingEngramsDiv").toggleClass("error");
 			skill.toggleClass("transition");
-			$("#remainingEngramsDiv").toggleClass("transition");
+			$("#remainingEngramsDiv").toggleClass("transition");			
 		}, 750);
 
 		
-		
+	
 
 		return false;
 	}
