@@ -17,3 +17,5 @@ Add option to not hide anything
 add section in header.  When hover over skill show desctiption in header section.
 
 add text to point people at etg website
+
+add ability to save character build through get requests
