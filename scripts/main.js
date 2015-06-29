@@ -8,6 +8,7 @@ $(document).ready(function() {
 	$.getJSON('json/skills.json', function(data) {
 		skills = data;
 		buildSkillsTable();
+		updateEngramDisplay();
 	});
 
 	$('#levelSelect').on('change', function() {
@@ -16,7 +17,7 @@ $(document).ready(function() {
 		$("#body>div").each(function() {
 			checkRequirements($(this));
 		});
-
+		updateEngramDisplay();
 	});
 });
 
@@ -159,9 +160,7 @@ function checkRequirements(skill) {  //takes in a skill jquery object.  Checks t
 function selectSkill(skill) {  //takes in a jquery object skill div. checks requirements to select. then runs select logic 
 	if ((character.engrams - character.spent - skill.data("engrams")) >= 0) {
 		character.spent += skill.data("engrams");
-		$("#spentEngrams").text(character.spent);
-		$("#remainingEngrams").text(character.engrams - character.spent);
-		
+		updateEngramDisplay();
 		skill.data("selected", true);
 		skill.addClass("selected");
 		skill.animate({opacity: '1'}, 300);
@@ -187,10 +186,37 @@ function selectSkill(skill) {  //takes in a jquery object skill div. checks requ
 
 function deselectSkill(skill) { //takes in a jquery object skill div. runs de-select logic
 	character.spent -= skill.data("engrams");
-	$("#spentEngrams").text(character.spent);
-	$("#remainingEngrams").text(character.engrams - character.spent);
+	updateEngramDisplay();
 	skill.data("selected", false);
 	skill.removeClass( "selected" );
 	skill.animate({opacity: '0.5'}, 300);
 	return true;
+}
+
+function updateEngramDisplay() {
+//	$("#spentEngrams").text(character.spent);
+//	$("#remainingEngrams").text(character.engrams - character.spent);
+
+
+	var oldSpentValue = parseInt($("#spentEngrams").text());
+	var oldRemainingValue = parseInt($("#remainingEngrams").text());
+	var newRemainingValue = (character.engrams - character.spent);
+
+
+	$({someValue: oldSpentValue}).animate({someValue: character.spent}, {
+		duration: 500,
+		easing:'linear',
+		step: function() {
+			$('#spentEngrams').text(Math.round(this.someValue));
+		}
+	});
+
+	$({someValue: oldRemainingValue}).animate({someValue: newRemainingValue}, {
+		duration: 500,
+		easing:'linear',
+		step: function() {
+			$('#remainingEngrams').text(Math.round(this.someValue));
+		}
+	});
+
 }
