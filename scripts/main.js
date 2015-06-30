@@ -19,6 +19,9 @@ $(document).ready(function() {
 		});
 		updateEngramDisplay();
 	});
+	
+	var charstring = getParameterByName("char");
+	loadSavedCharacter(charstring);
 });
 
 function buildSkillsTable() {  //builds main table of skill divs
@@ -202,3 +205,18 @@ function updateEngramDisplay() {
 	$('#remainingEngrams').prop('number', oldRemainingValue).animateNumber({number: newRemainingValue},200);
 	
 }
+
+function loadSavedCharacter(characterString) {
+	var decodedCharacter = atob(characterString);
+	alert(decodedCharacter);
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+
+
