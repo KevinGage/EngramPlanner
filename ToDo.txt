@@ -1,3 +1,7 @@
+on each skill show engram and level requirement
+
+have text in divs resize when divs resize
+
 re-style header
 
 add ETG logo
@@ -15,6 +19,11 @@ fix negative remaining when switching to negative level
 Add disclaimer about ark ownership
 
 Add option to not hide anything
+	On select change check requirements on all divs.
+	In hide function put a switch statement.
+	If don't hide then style items and show
+	If hide then style items and hide
+
 
 add text and link to point people at etg website
 
@@ -23,3 +32,5 @@ change animation on "can't select skill"?
 change any other animations for performance?
 
 add ability to save character build through get requests
+
+Skill planner https://docs.google.com/spreadsheets/d/1g5O-T1xV39CsTogNgwDPIcz3XjL6D0mNwYK60QjZCwM/edit#gid=0
