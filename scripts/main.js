@@ -5,7 +5,7 @@ $(document).ready(function() {
 	fillLevels();
 	totalEngrams();
 
-	$.getJSON('json/skills.json', function(data) {
+	$.getJSON('json/skills.json', function(data) { //Http://www.enjoythegame.net/arkplanner/json/skills.json for ETG site
 		skills = data;
 		buildSkillsTable();
 		updateEngramDisplay();
@@ -14,10 +14,13 @@ $(document).ready(function() {
 	$('#levelSelect').on('change', function() {
 		totalEngrams();
 
-		$("#body>div").each(function() {
-			checkRequirements($(this));
-		});
+		updateAllSkillViews();
+
 		updateEngramDisplay();
+	});
+
+	$('#viewSelect').on('change', function() {
+		updateAllSkillViews();
 	});
 	
 	var charstring = getParameterByName("char");
@@ -41,13 +44,7 @@ function buildSkillsTable() {  //builds main table of skill divs
 		skillItemText.innerHTML = $(skillItem).data("skillName");
 		$(skillItem).append(skillItemText);
 		
-		if (hasOwnProperty.call(this, "requires")) {
-			$(skillItem).hide();
-		}
-
-		if (val.level > character.level) {
-			$(skillItem).hide();
-		}
+		updateAllSkillViews(); // this causes an ugly effect.  After drawing everything to screen it goes back and hides things.
 	});
 
 	$(".skillitem").hover(function() {
@@ -90,9 +87,13 @@ function fillLevels() {
 	}
 
 	$('#levelSelect option:last-child').attr('selected', 'selected');
+
+	return true;
 }
 
 function totalEngrams() {
+	var oldValue = character.engrams;
+
 	var x = parseInt($("#levelSelect option:selected").val());
 	character.level = x;
 	switch(true) {
@@ -126,45 +127,47 @@ function totalEngrams() {
 			$("#totalEngrams").text("you a haxor");
 			break;
 	}
-	$("#totalEngrams").text(character.engrams);
+
+	$('#totalEngrams').prop('number', oldValue).animateNumber({number: character.engrams},200);
+
+	return true;
 }
 
-function checkSkillDependencies(skill) {  // Takes in an array of hidden skills.  checks each skill to see if they should be unhidden.
-	for (var i =0; i < skill.length; i++) {
-		var itemToBeChecked = $("#" + skill[i]);
-		checkRequirements(itemToBeChecked);
+function checkSkillDependencies(skills) {  // Takes in an array of hidden skills.  checks each skill to see if they should be unhidden.
+	for (var i =0; i < skills.length; i++) {
+		var itemToBeChecked = $("#" + skills[i]);
+		updateSkillView(itemToBeChecked);
 	}
 }
 
-function checkRequirements(skill) {  //takes in a skill jquery object.  Checks the skill requirements to see if it should be unhidden by looking at the div with id #skill.
-	var show = true;
+function checkRequirements(skill) {  //takes in a skill jquery object.  returns "", else returns requirement not met.
+	var requirmentsMet = "";
+
+	if (skill.data("engrams") > (character.engrams - character.spent)) {
+		requirmentsMet = "engrams";
+	}
 
 	if (hasOwnProperty.call(skill.data(), "requires")) {
 		for (var i = 0; i < skill.data("requires").length; i++) {
 			if ( !($("#" + skill.data("requires")[i]).data( "selected" )))  {
-				show = false;
+				requirmentsMet = "requires";
 			}
 		}
 	}
 
 	if (skill.data("level") > character.level) {
-		show = false;
+		requirmentsMet = "level";
 	}
-	
-	if (show){
-		skill.show(200);
-	}
-	else{
-		if (skill.data("selected")) {
-			deselectSkill(skill);
-		}
-		skill.hide(200);
-	}
-	return true;
+
+
+	return requirmentsMet;
 }
 
-function selectSkill(skill) {  //takes in a jquery object skill div. checks requirements to select. then runs select logic 
-	if ((character.engrams - character.spent - skill.data("engrams")) >= 0) {
+
+function selectSkill(skill) {  //takes in a jquery object skill div. checks requirements to select. then runs select logic
+	var requirementsMissing = checkRequirements(skill);
+
+	if (requirementsMissing === "") {
 		character.spent += skill.data("engrams");
 		updateEngramDisplay();
 		skill.data("selected", true);
@@ -173,26 +176,57 @@ function selectSkill(skill) {  //takes in a jquery object skill div. checks requ
 		return true;
 	}
 	else{
-		skill.toggleClass("transition");
-		$("#remainingEngramsDiv").toggleClass("transition");
-		
-		skill.toggleClass("error");
-		$("#remainingEngramsDiv").toggleClass("error");
-		
-		setTimeout(function (){
-			skill.toggleClass("error");
-			$("#remainingEngramsDiv").toggleClass("error");
-			skill.toggleClass("transition");
-			$("#remainingEngramsDiv").toggleClass("transition");			
-		}, 750);
+		switch (requirementsMissing) {
+			case "level":
+				skill.toggleClass("transition");
+				$("#currentLevelDiv").toggleClass("transition");
 
+				skill.toggleClass("error");
+				$("#currentLevelDiv").toggleClass("error");
+
+				setTimeout(function (){
+					skill.toggleClass("error");
+					$("#currentLevelDiv").toggleClass("error");
+					skill.toggleClass("transition");
+					$("#currentLevelDiv").toggleClass("transition");
+				}, 750);
+				break;
+			case "requires":
+				/////////////////////add code here for showing unmet required skills
+				break;
+			case "engrams":
+				skill.toggleClass("transition");
+				$("#remainingEngramsDiv").toggleClass("transition");
+
+				skill.toggleClass("error");
+				$("#remainingEngramsDiv").toggleClass("error");
+
+				setTimeout(function (){
+					skill.toggleClass("error");
+					$("#remainingEngramsDiv").toggleClass("error");
+					skill.toggleClass("transition");
+					$("#remainingEngramsDiv").toggleClass("transition");
+				}, 750);
+				break;
+
+			default:
+				skill.toggleClass("transition");
+				skill.toggleClass("error");
+
+				setTimeout(function (){
+					skill.toggleClass("error");
+					skill.toggleClass("transition");
+				}, 750);				
+		}
 		return false;
 	}
 }
 
 function deselectSkill(skill) { //takes in a jquery object skill div. runs de-select logic
-	character.spent -= skill.data("engrams");
-	updateEngramDisplay();
+	if (skill.data("selected") == true) {
+		character.spent -= skill.data("engrams");
+		updateEngramDisplay();
+	}
 	skill.data("selected", false);
 	skill.removeClass( "selected" );
 	skill.animate({opacity: '0.5'}, 300);
@@ -209,7 +243,7 @@ function updateEngramDisplay() {
 	
 }
 
-function loadSavedCharacter(characterString) {
+function loadSavedCharacter(characterString) { ////eventually will select skills, level, etc based on GET parameter base64 string.
 	var decodedCharacter = atob(characterString);
 	alert(decodedCharacter);
 }
@@ -219,6 +253,43 @@ function getParameterByName(name) {
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function updateAllSkillViews() { //// updates view for all skills
+	$("#body>div").each(function() {
+		updateSkillView($(this));
+	});
+}
+
+function updateSkillView(skill) { ///updates view for one skill
+	var missingRequirements = checkRequirements(skill);
+	if (missingRequirements == "") {
+		skill.show(200);
+		return true;
+	}
+	switch (missingRequirements) {
+		case "level":
+			deselectSkill(skill);
+			if ($("#viewSelect option:selected").val() == "0") {
+				skill.hide(200);
+			}
+			else {
+				skill.show(200);
+			}
+			break;
+		case "requires":
+			deselectSkill(skill);
+			if ($("#viewSelect option:selected").val() == "0") {
+				skill.hide(200);
+			}
+			else {
+				skill.show(200);
+			}
+			break;
+		default:
+			skill.show(200);
+	}
+	return false;
 }
 
 

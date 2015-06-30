@@ -6,12 +6,12 @@ body {
 #header {
 	position: fixed;
 	width: 100%;
-	height: 120px;
 	background-color: #FFFF00;
 	z-index: 1;
 	left: 0px;
 	top: 0px;
 	text-align: center;
+	padding: 10px 10px 10px 10px;
 }
 #body {
 	
@@ -33,6 +33,8 @@ body {
 	border-radius: 5px;
 	display: inline-block;
 	margin: 1%;
+	height: 45px;
+	padding: 10px 10px 10px 10px;
 }
 .skillitem {
 	background-color: #FF3300;
