@@ -1,3 +1,5 @@
+if you arent hiding skills, and you pick one that you don't have requirements for, show the missing requirements.
+
 on each skill show engram and level requirement
 
 have text in divs resize when divs resize
@@ -17,13 +19,6 @@ restyle the rest of the background
 fix negative remaining when switching to negative level
 
 Add disclaimer about ark ownership
-
-Add option to not hide anything
-	On select change check requirements on all divs.
-	In hide function put a switch statement.
-	If don't hide then style items and show
-	If hide then style items and hide
-
 
 add text and link to point people at etg website
 
