@@ -21,7 +21,10 @@ $(document).ready(function() {
 	});
 	
 	var charstring = getParameterByName("char");
-	loadSavedCharacter(charstring);
+
+	if (charstring != "") {
+		loadSavedCharacter(charstring);
+	}
 });
 
 function buildSkillsTable() {  //builds main table of skill divs
