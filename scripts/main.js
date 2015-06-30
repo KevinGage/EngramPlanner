@@ -178,45 +178,20 @@ function selectSkill(skill) {  //takes in a jquery object skill div. checks requ
 	else{
 		switch (requirementsMissing) {
 			case "level":
-				skill.toggleClass("transition");
-				$("#currentLevelDiv").toggleClass("transition");
-
-				skill.toggleClass("error");
-				$("#currentLevelDiv").toggleClass("error");
-
-				setTimeout(function (){
-					skill.toggleClass("error");
-					$("#currentLevelDiv").toggleClass("error");
-					skill.toggleClass("transition");
-					$("#currentLevelDiv").toggleClass("transition");
-				}, 750);
+				showError(skill);
+				showError($("#currentLevelDiv"));
 				break;
 			case "requires":
+				showError(skill);
+
 				/////////////////////add code here for showing unmet required skills
 				break;
 			case "engrams":
-				skill.toggleClass("transition");
-				$("#remainingEngramsDiv").toggleClass("transition");
-
-				skill.toggleClass("error");
-				$("#remainingEngramsDiv").toggleClass("error");
-
-				setTimeout(function (){
-					skill.toggleClass("error");
-					$("#remainingEngramsDiv").toggleClass("error");
-					skill.toggleClass("transition");
-					$("#remainingEngramsDiv").toggleClass("transition");
-				}, 750);
+				showError(skill);
+				showError($("#remainingEngramsDiv"));
 				break;
-
 			default:
-				skill.toggleClass("transition");
-				skill.toggleClass("error");
-
-				setTimeout(function (){
-					skill.toggleClass("error");
-					skill.toggleClass("transition");
-				}, 750);				
+				showError(skill);				
 		}
 		return false;
 	}
@@ -292,5 +267,14 @@ function updateSkillView(skill) { ///updates view for one skill
 	return false;
 }
 
+function showError(errorDiv) { ///takes in a jquery object.  animates that object with the 'error' animation.  currently flash some red
+	errorDiv.toggleClass("transition");
+	errorDiv.toggleClass("error");
+
+	setTimeout(function (){
+		errorDiv.toggleClass("error");
+		errorDiv.toggleClass("transition");
+	}, 750);
+}
 
 
