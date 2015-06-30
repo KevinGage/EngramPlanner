@@ -193,7 +193,11 @@ function selectSkill(skill) {  //takes in a jquery object skill div. checks requ
 			case "requires":
 				showError(skill);
 
-				/////////////////////add code here for showing unmet required skills
+				for (var i = 0; i < skill.data("requires").length; i++) {
+					if ( !($("#" + skill.data("requires")[i]).data( "selected" )))  {
+						showError($("#" + skill.data("requires")[i]));
+					}
+				}
 				break;
 			case "engrams":
 				showError(skill);
