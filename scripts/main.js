@@ -44,7 +44,16 @@ function buildSkillsTable() {  //builds main table of skill divs
 		skillItemText.innerHTML = $(skillItem).data("skillName");
 		$(skillItem).append(skillItemText);
 		
-		updateAllSkillViews(); // this causes an ugly effect.  After drawing everything to screen it goes back and hides things.
+		
+		if (hasOwnProperty.call(this, "requires")) { //better effect. may not work good with saved characters
+			$(skillItem).hide();
+		}
+
+		if (val.level > character.level) { //better effect. may not work good with saved characters
+			$(skillItem).hide();
+		}
+		//updateSkillView($(skillItem)); // this causes an ugly effect.  After drawing everything to screen it goes back and hides things.
+		//updateAllSkillViews(); // this causes an ugly effect.  After drawing everything to screen it goes back and hides things.
 	});
 
 	$(".skillitem").hover(function() {
