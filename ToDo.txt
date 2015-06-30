@@ -1,5 +1,3 @@
-if you arent hiding skills, and you pick one that you don't have requirements for, show the missing requirements.
-
 on each skill show engram and level requirement
 
 have text in divs resize when divs resize
