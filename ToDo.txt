@@ -1,12 +1,12 @@
-add ability to save character build through get requests
-
-add description to every item, make description bar show them
+add description to every item
 
 try to add spaces back into requires field for description bar
 
 have text in divs resize when divs resize
 
 Add all other skills to json
+
+restyle table and save div?
 
 adjust description bar to look better.
 
