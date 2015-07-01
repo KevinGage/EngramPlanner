@@ -43,8 +43,19 @@ function buildSkillsTable() {  //builds main table of skill divs
 		var skillItemText = document.createElement("span");
 		skillItemText.innerHTML = $(skillItem).data("skillName");
 		$(skillItem).append(skillItemText);
+		/////////////////
+		var levelDisplay = document.createElement("div");
+		var engramDisplay = document.createElement("div");
 		
+		$(levelDisplay).addClass("levelrequirementdiv");
+		$(engramDisplay).addClass("engramrequirementdiv");
 		
+		levelDisplay.innerHTML = $(skillItem).data("level");
+		engramDisplay.innerHTML = $(skillItem).data("engrams");
+		
+		$(skillItem).append(levelDisplay);
+		$(skillItem).append(engramDisplay);
+		/////////////////
 		if (hasOwnProperty.call(this, "requires")) { //better effect. may not work good with saved characters
 			$(skillItem).hide();
 		}
