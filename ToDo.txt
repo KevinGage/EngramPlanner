@@ -1,4 +1,4 @@
-on each skill show engram and level requirement
+adjust level and skill div css to look better
 
 have text in divs resize when divs resize
 
