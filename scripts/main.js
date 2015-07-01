@@ -14,7 +14,7 @@ $(document).ready(function() {
 	$('#levelSelect').on('change', function() {
 		totalEngrams();
 		
-		fixNegativeEngrams(); //////////////////////////////
+		fixNegativeEngrams();
 
 		updateAllSkillViews();
 
@@ -24,6 +24,10 @@ $(document).ready(function() {
 	$('#viewSelect').on('change', function() {
 		updateAllSkillViews();
 	});
+	
+	$("#totalEngrams").on('click', function() {
+		saveCharacter();
+	}); /////////////////////////////////////////////TAKE THIS OUT!!! Replace with button somewhere
 	
 	var charstring = getParameterByName("char");
 
@@ -252,7 +256,21 @@ function updateEngramDisplay() {
 
 function loadSavedCharacter(characterString) { ////eventually will select skills, level, etc based on GET parameter base64 string.
 	var decodedCharacter = atob(characterString);
-	alert(decodedCharacter);
+
+	var characterSkillArray = decodedCharacter.split(",");
+	
+	character.level = parseInt(characterSkillArray[0]); //needed?
+
+	$('#levelSelect').val(character.level).change();
+	
+	totalEngrams();
+	
+	var skilldivs = document.querySelectorAll('#body .skillitem');
+	
+	for (var i = 1; i < characterSkillArray.length; i++) {
+		
+		selectSkill($(skilldivs[characterSkillArray[i]]));
+	}
 }
 
 function getParameterByName(name) {
@@ -326,10 +344,6 @@ function fixNegativeEngrams() {
 		var i = skilldivs.length -1;
 		
 		while ((character.engrams - character.spent) < 0) {
-			//var thing = skilldivs[i];
-			//var otherThing = $("#" + thing.id);
-			
-			
 			deselectSkill($(skilldivs[i]));
 			i--;
 		}
@@ -337,7 +351,17 @@ function fixNegativeEngrams() {
 }
 
 function saveCharacter() {
+	var savedCharacter = character.level.toString();
 	
+	var skilldivs = document.querySelectorAll('#body .skillitem');
+	
+	for (var i = 0; i < skilldivs.length; i++) {
+		if ($(skilldivs[i]).data("selected")) {
+			savedCharacter += "," + i.toString();
+		}
+	}
+	/////////////////Do something better than alert
+	alert("Copy the link below to share your character!\n\nwww.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter));
 }
 
 
