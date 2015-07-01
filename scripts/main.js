@@ -9,6 +9,7 @@ $(document).ready(function() {
 		skills = data;
 		buildSkillsTable();
 		updateEngramDisplay();
+		loadSavedCharacter();
 	});
 
 	$('#levelSelect').on('change', function() {
@@ -24,16 +25,8 @@ $(document).ready(function() {
 	$('#viewSelect').on('change', function() {
 		updateAllSkillViews();
 	});
-	
-	$("#totalEngrams").on('click', function() {
-		saveCharacter();
-	}); /////////////////////////////////////////////TAKE THIS OUT!!! Replace with button somewhere
-	
-	var charstring = getParameterByName("char");
 
-	if (charstring != "") {
-		loadSavedCharacter(charstring);
-	}
+	
 });
 
 function buildSkillsTable() {  //builds main table of skill divs
@@ -72,6 +65,7 @@ function buildSkillsTable() {  //builds main table of skill divs
 		}
 		//updateSkillView($(skillItem)); // this causes an ugly effect.  After drawing everything to screen it goes back and hides things.
 		//updateAllSkillViews(); // this causes an ugly effect.  After drawing everything to screen it goes back and hides things.
+		
 	});
 
 	$(".skillitem").hover(function() {
@@ -254,22 +248,29 @@ function updateEngramDisplay() {
 	
 }
 
-function loadSavedCharacter(characterString) { ////eventually will select skills, level, etc based on GET parameter base64 string.
-	var decodedCharacter = atob(characterString);
+function loadSavedCharacter() { ////eventually will select skills, level, etc based on GET parameter base64 string.
+	var charstring = getParameterByName("char");
 
-	var characterSkillArray = decodedCharacter.split(",");
+	if (charstring != "") {
 	
-	character.level = parseInt(characterSkillArray[0]); //needed?
+		var decodedCharacter = atob(charstring);
 
-	$('#levelSelect').val(character.level).change();
+		var characterSkillArray = decodedCharacter.split(",");
 	
-	totalEngrams();
+		character.level = parseInt(characterSkillArray[0]); //needed?
+
+		$('#levelSelect').val(character.level).change();
 	
-	var skilldivs = document.querySelectorAll('#body .skillitem');
+		totalEngrams();
 	
-	for (var i = 1; i < characterSkillArray.length; i++) {
+		var skilldivs = document.querySelectorAll('#body .skillitem');
+	
+		for (var i = 1; i < characterSkillArray.length; i++) {
 		
-		selectSkill($(skilldivs[characterSkillArray[i]]));
+			selectSkill($(skilldivs[characterSkillArray[i]]));
+		}
+		
+		updateAllSkillViews();
 	}
 }
 
@@ -361,7 +362,55 @@ function saveCharacter() {
 		}
 	}
 	/////////////////Do something better than alert
-	alert("Copy the link below to share your character!\n\nwww.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter));
+	//alert("Copy the link below to share your character!\n\nwww.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter));
+	
+	var docHeight = $(document).height();
+	$("body").append("<div id='overlayDiv'></div>").hide().fadeIn("slow");
+	$overlayDiv = $("#overlayDiv");
+	
+	$overlayDiv.height(docHeight / 3).css({
+		'text-align':'center',
+		
+        'opacity' : 0.9,
+		'position': 'absolute',
+        'top': (docHeight / 3),
+        'background-color': 'black',
+        'width': '75%',
+        'z-index': 5000,
+        'margin-left': '10%',
+        'margin-right': '10%',
+		'color': 'white'
+	});
+	
+	var charLink = "www.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter);
+	
+	$overlayDiv.append("<table>");
+	$overlayDiv.append("<tr>");
+	$overlayDiv.append("<td>");
+	$overlayDiv.append("Copy the link below to share your character!");
+	$overlayDiv.append("</td>");
+	$overlayDiv.append("</tr>");
+	$overlayDiv.append("<tr>");
+	$overlayDiv.append("<td>");
+	$overlayDiv.append('<a href="' + charLink + '">' + charLink + '</a>');
+	//$overlayDiv.append("www.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter));
+	$overlayDiv.append("</td>");
+	$overlayDiv.append("</tr>");
+	$overlayDiv.append("<tr>");
+	$overlayDiv.append("<td>");
+	$overlayDiv.append("<button id='close'>CLOSE</button>");
+	$overlayDiv.append("</td>");
+	$overlayDiv.append("</tr>");
+	$overlayDiv.append("</table>");
+	
+	$("#close").ready(function(){
+		$(document).on("click", "#close", function(){
+			$overlayDiv.fadeOut("slow", function(){
+				$overlayDiv.remove();
+			});
+		});
+	});
+	
 }
 
 
