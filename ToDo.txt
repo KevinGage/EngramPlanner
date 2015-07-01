@@ -1,3 +1,9 @@
+adjust description bar to look better.
+
+add description to every item, make description bar show them
+
+try to add spaces back into requires field for description bar
+
 adjust level and skill div css to look better
 
 have text in divs resize when divs resize
@@ -5,8 +11,6 @@ have text in divs resize when divs resize
 re-style header
 
 add ETG logo
-
-add section in header.  When hover over skill show desctiption in header section.
 
 Add all other skills to json
 
