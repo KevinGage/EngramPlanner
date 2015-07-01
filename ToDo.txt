@@ -1,3 +1,5 @@
+get images for Preserving Bin and Metal Spike Wall
+
 add description to every item
 
 try to add spaces back into requires field for description bar
