@@ -304,6 +304,10 @@ function showError(errorDiv) { ///takes in a jquery object.  animates that objec
 	}, 750);
 }
 function updateDescriptionBar(newDescription, requirements){
+	if (requirements == undefined) {
+		requirements = "none";
+	}
+	
 	$("#descriptionSpan").stop(true);
 	$("#requirementSpan").stop(true);
 	$("#descriptionSpan").animate({opacity:0}, 50).queue(function(){$("#descriptionSpan").text(newDescription); $("#descriptionSpan").dequeue()}).animate({opacity:1}, 1000); 
