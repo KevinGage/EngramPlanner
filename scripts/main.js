@@ -13,6 +13,8 @@ $(document).ready(function() {
 
 	$('#levelSelect').on('change', function() {
 		totalEngrams();
+		
+		fixNegativeEngrams(); //////////////////////////////
 
 		updateAllSkillViews();
 
@@ -239,7 +241,10 @@ function updateEngramDisplay() {
 	var oldSpentValue = parseInt($("#spentEngrams").text());
 	var oldRemainingValue = parseInt($("#remainingEngrams").text());
 	var newRemainingValue = (character.engrams - character.spent);
-
+	
+	$('#spentEngrams').stop(true);
+	$('#remainingEngrams').stop(true);
+	
 	$('#spentEngrams').prop('number', oldSpentValue).animateNumber({number: character.spent},200);
 	$('#remainingEngrams').prop('number', oldRemainingValue).animateNumber({number: newRemainingValue},200);
 	
@@ -312,6 +317,22 @@ function updateDescriptionBar(newDescription, requirements){
 	$("#requirementSpan").stop(true);
 	$("#descriptionSpan").animate({opacity:0}, 50).queue(function(){$("#descriptionSpan").text(newDescription); $("#descriptionSpan").dequeue()}).animate({opacity:1}, 1000); 
 	$("#requirementSpan").animate({opacity:0}, 50).queue(function(){$("#requirementSpan").text("Requires: " + requirements); $("#requirementSpan").dequeue()}).animate({opacity:1}, 1000); 
+}
+
+function fixNegativeEngrams() {
+	if ((character.engrams - character.spent) < 0) {
+		
+		var skilldivs = document.querySelectorAll('#body .skillitem');
+		var i = skilldivs.length -1;
+		
+		while ((character.engrams - character.spent) < 0) {
+			var thing = skilldivs[i];
+			var otherThing = $("#" + thing.id);
+			
+			deselectSkill(otherThing);
+			i--;
+		}
+	}
 }
 
 

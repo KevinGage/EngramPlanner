@@ -1,24 +1,24 @@
-adjust description bar to look better.
+add ability to save character build through get requests
 
 add description to every item, make description bar show them
 
 try to add spaces back into requires field for description bar
 
-adjust level and skill div css to look better
-
 have text in divs resize when divs resize
+
+Add all other skills to json
+
+adjust description bar to look better.
+
+adjust level and skill div css to look better
 
 re-style header
 
 add ETG logo
 
-Add all other skills to json
-
 decide how scrolling will work
 
 restyle the rest of the background
-
-fix negative remaining when switching to negative level
 
 Add disclaimer about ark ownership
 
@@ -27,7 +27,5 @@ add text and link to point people at etg website
 change animation on "can't select skill"?
 
 change any other animations for performance?
-
-add ability to save character build through get requests
 
 Skill planner https://docs.google.com/spreadsheets/d/1g5O-T1xV39CsTogNgwDPIcz3XjL6D0mNwYK60QjZCwM/edit#gid=0
