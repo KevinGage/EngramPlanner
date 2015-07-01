@@ -15,7 +15,7 @@ body {
 }
 #body {
 	
-	top: 150px;
+	top: 190px;
 	position: relative;	
 	width: 70%;
 	border: 2px solid #959494;
@@ -24,6 +24,19 @@ body {
 	z-index: 0;
 	background-color: #6699FF;
 	box-shadow: 3px 3px 10px 5px #001212;
+	text-align: center;
+}
+#descriptionBarDiv {
+	width: 90%;
+	background-color: #959494;
+	margin: auto;
+	margin-top: 5px;
+	position: relative;
+}
+#descriptionSpan{
+	text-align: center;
+}
+#requirementSpan{
 	text-align: center;
 }
 .headeritem {
@@ -73,7 +86,7 @@ body {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	font-size: 0.4 em;
+	font-size: 0.6em;
 }
 .engramrequirementdiv {
 	opacity: 0.7;
@@ -84,7 +97,7 @@ body {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	font-size: 0.4 em;
+	font-size: 0.6em;
 }
 div > * {
 	vertical-align: middle;

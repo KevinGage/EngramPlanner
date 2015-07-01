@@ -40,10 +40,11 @@ function buildSkillsTable() {  //builds main table of skill divs
 		$(skillItem).css("background","url(" + $(skillItem).data("image") + ")");
 		$(skillItem).css("background-size", "contain");
 		$('#body').append(skillItem);
+
 		var skillItemText = document.createElement("span");
 		skillItemText.innerHTML = $(skillItem).data("skillName");
 		$(skillItem).append(skillItemText);
-		/////////////////
+
 		var levelDisplay = document.createElement("div");
 		var engramDisplay = document.createElement("div");
 		
@@ -55,7 +56,7 @@ function buildSkillsTable() {  //builds main table of skill divs
 		
 		$(skillItem).append(levelDisplay);
 		$(skillItem).append(engramDisplay);
-		/////////////////
+
 		if (hasOwnProperty.call(this, "requires")) { //better effect. may not work good with saved characters
 			$(skillItem).hide();
 		}
@@ -70,6 +71,8 @@ function buildSkillsTable() {  //builds main table of skill divs
 	$(".skillitem").hover(function() {
 		if (!($(this).data("selected"))) {
 			$(this).animate({opacity: '1'}, 300);
+			
+			updateDescriptionBar($(this).data("skillName"), $(this).data("requires"));
 		}
 	}, function() {
 		if (!($(this).data("selected"))) {
@@ -299,6 +302,12 @@ function showError(errorDiv) { ///takes in a jquery object.  animates that objec
 		errorDiv.toggleClass("error");
 		errorDiv.toggleClass("transition");
 	}, 750);
+}
+function updateDescriptionBar(newDescription, requirements){
+	$("#descriptionSpan").stop(true);
+	$("#requirementSpan").stop(true);
+	$("#descriptionSpan").animate({opacity:0}, 50).queue(function(){$("#descriptionSpan").text(newDescription); $("#descriptionSpan").dequeue()}).animate({opacity:1}, 1000); 
+	$("#requirementSpan").animate({opacity:0}, 50).queue(function(){$("#requirementSpan").text("Requires: " + requirements); $("#requirementSpan").dequeue()}).animate({opacity:1}, 1000); 
 }
 
 
