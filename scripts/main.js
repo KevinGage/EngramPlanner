@@ -326,13 +326,18 @@ function fixNegativeEngrams() {
 		var i = skilldivs.length -1;
 		
 		while ((character.engrams - character.spent) < 0) {
-			var thing = skilldivs[i];
-			var otherThing = $("#" + thing.id);
+			//var thing = skilldivs[i];
+			//var otherThing = $("#" + thing.id);
 			
-			deselectSkill(otherThing);
+			
+			deselectSkill($(skilldivs[i]));
 			i--;
 		}
 	}
+}
+
+function saveCharacter() {
+	
 }
 
 
