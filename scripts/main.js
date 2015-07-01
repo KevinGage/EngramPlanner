@@ -384,7 +384,7 @@ function saveCharacter() {
 	
 	var charLink = "www.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter);
 	
-	$overlayDiv.append("<table>");
+	$overlayDiv.append('<table id="saveTable">');
 	$overlayDiv.append("<tr>");
 	$overlayDiv.append("<td>");
 	$overlayDiv.append("Copy the link below to share your character!");
