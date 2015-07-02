@@ -8,6 +8,8 @@ have text in divs resize when divs resize
 
 Add all other skills to json
 
+move save character button
+
 restyle table and save div?
 
 adjust description bar to look better.
