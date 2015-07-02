@@ -1,4 +1,6 @@
-have text in divs resize when divs resize
+spans overlap divs when too small
+
+multiline spans are too long
 
 add description to every item
 
@@ -11,6 +13,8 @@ move save character button
 some skills have generic images, like saddles. get actual images from internet
 
 restyle table and save div?
+
+change fonts
 
 adjust description bar to look better.
 
