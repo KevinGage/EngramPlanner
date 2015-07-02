@@ -8,8 +8,6 @@ try to add spaces back into requires field for description bar
 
 Add all other skills to json
 
-move save character button
-
 some skills have generic images, like saddles. get actual images from internet
 
 restyle table and save div?
@@ -35,5 +33,7 @@ add text and link to point people at etg website
 change animation on "can't select skill"?
 
 change any other animations for performance?
+
+move save character button?
 
 Skill planner https://docs.google.com/spreadsheets/d/1g5O-T1xV39CsTogNgwDPIcz3XjL6D0mNwYK60QjZCwM/edit#gid=0
