@@ -206,7 +206,7 @@ function selectSkill(skill) {  //takes in a jquery object skill div. checks requ
 				break;
 			case "requires":
 				showError(skill);
-
+				showError($("#requirementSpan"));//////////////
 				for (var i = 0; i < skill.data("requires").length; i++) {
 					if ( !($("#" + skill.data("requires")[i]).data( "selected" )))  {
 						showError($("#" + skill.data("requires")[i]));
