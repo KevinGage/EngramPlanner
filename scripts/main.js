@@ -334,7 +334,7 @@ function updateDescriptionBar(newDescription, requirements){
 	
 	$("#descriptionSpan").stop(true);
 	$("#requirementSpan").stop(true);
-	$("#descriptionSpan").animate({opacity:0}, 50).queue(function(){$("#descriptionSpan").text(newDescription); $("#descriptionSpan").dequeue()}).animate({opacity:1}, 1000); 
+	$("#descriptionSpan").animate({opacity:0}, 50).queue(function(){$("#descriptionSpan").text("Description: " + newDescription); $("#descriptionSpan").dequeue()}).animate({opacity:1}, 1000); 
 	$("#requirementSpan").animate({opacity:0}, 50).queue(function(){$("#requirementSpan").text("Requires: " + requirements); $("#requirementSpan").dequeue()}).animate({opacity:1}, 1000); 
 }
 
