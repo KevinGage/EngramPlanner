@@ -1,3 +1,5 @@
+highlight "requires" box if you are missing pre-requisits
+
 add description to every item
 
 try to add spaces back into requires field for description bar
