@@ -8,6 +8,8 @@ Add all other skills to json
 
 move save character button
 
+some skills have generic images, like saddles. get actual images from internet
+
 restyle table and save div?
 
 adjust description bar to look better.
