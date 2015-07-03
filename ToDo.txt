@@ -4,11 +4,7 @@ multiline spans are too long
 
 add description to every item
 
-try to add spaces back into requires field for description bar
-
-Add all other skills to json
-
-some skills have generic images, like saddles. get actual images from internet
+some skills have generic images, like saddles. get actual images from internet. others missing images
 
 restyle table and save div?
 
