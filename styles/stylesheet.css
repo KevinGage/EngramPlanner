@@ -18,7 +18,6 @@ body {
 	padding: 10px 10px 10px 10px;
 }
 #body {
-	
 	top: 210px;
 	position: relative;	
 	width: 70%;
@@ -42,6 +41,18 @@ body {
 }
 #requirementSpan{
 	text-align: center;
+}
+#wrapper{
+
+}
+#footer{
+	width: 70%;
+	margin: auto;
+	margin-top: 250px;
+	position: relative;
+	text-align: center;
+	font-size: 0.5em;
+
 }
 .headeritem {
 	background-color: #66FF33;
