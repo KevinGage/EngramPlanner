@@ -368,8 +368,6 @@ function saveCharacter() {
 			savedCharacter += "," + i.toString();
 		}
 	}
-	/////////////////Do something better than alert
-	//alert("Copy the link below to share your character!\n\nwww.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter));
 	
 	var docHeight = $(document).height();
 	$("body").append("<div id='overlayDiv'></div>").hide().fadeIn("slow");
