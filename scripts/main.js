@@ -72,7 +72,8 @@ function buildSkillsTable() {  //builds main table of skill divs
 		if (!($(this).data("selected"))) {
 			$(this).animate({opacity: '1'}, 300);
 		}
-		updateDescriptionBar($(this).data("skillName"), $(this).data("requires"));
+		var descriptionText = ($(this).data("skillName") + ": " + $(this).data("description"));
+		updateDescriptionBar(descriptionText, $(this).data("requires"));
 	}, function() {
 		if (!($(this).data("selected"))) {
 			$(this).animate({opacity: '0.5'}, 300);
@@ -341,7 +342,7 @@ function updateDescriptionBar(newDescription, requirements){
 	
 	$("#descriptionSpan").stop(true);
 	$("#requirementSpan").stop(true);
-	$("#descriptionSpan").animate({opacity:0}, 50).queue(function(){$("#descriptionSpan").text("Description: " + newDescription); $("#descriptionSpan").dequeue()}).animate({opacity:1}, 1000); 
+	$("#descriptionSpan").animate({opacity:0}, 50).queue(function(){$("#descriptionSpan").text(newDescription); $("#descriptionSpan").dequeue()}).animate({opacity:1}, 1000); 
 	$("#requirementSpan").animate({opacity:0}, 50).queue(function(){$("#requirementSpan").text("Requires: " + requirements); $("#requirementSpan").dequeue()}).animate({opacity:1}, 1000); 
 }
 

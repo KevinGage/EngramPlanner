@@ -1,10 +1,8 @@
+possibly missing items or skill levels are wrong.  check wiki
+
 spans overlap divs when too small
 
 multiline spans are too long
-
-add description to every item
-
-some skills have generic images, like saddles. get actual images from internet.
 
 restyle table and save div?
 
