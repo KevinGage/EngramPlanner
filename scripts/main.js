@@ -330,6 +330,14 @@ function updateDescriptionBar(newDescription, requirements){
 	if (requirements == undefined) {
 		requirements = "none";
 	}
+	else {
+		requirementsWithSpaces = "";
+		for (var i = 0; i < requirements.length; i++) {
+			requirementsWithSpaces += requirements[i].split(/(?=[A-Z])/).join(' ');
+			requirementsWithSpaces += ", ";
+		}
+		requirements = requirementsWithSpaces.substring(0, requirementsWithSpaces.length - 2);
+	}
 	
 	$("#descriptionSpan").stop(true);
 	$("#requirementSpan").stop(true);
