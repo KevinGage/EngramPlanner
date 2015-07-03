@@ -1,7 +1,15 @@
 body {
 	font-weight: 400;
 	font-size: 20px;
-	background-color:green;
+	background-color:#2f3b49;
+	/*background: url("http://images.akamai.steamusercontent.com/ugc/36374861789922746/045B94D02EDDD8DDE79275105EFDFDBF7655AAC7/") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;*/
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFF;
+	text-shadow: 1px 1px #000000;
 }
 #saveTable {
 	width:200px;
@@ -10,12 +18,13 @@ body {
 #header {
 	position: fixed;
 	width: 100%;
-	background-color: #FFFF00;
 	z-index: 1;
 	left: 0px;
 	top: 0px;
 	text-align: center;
-	padding: 10px 10px 10px 10px;
+	padding: 6px 8px 8px 8px;
+	background:rgba(47, 59, 73, 0.7);
+	opacity: 60%;
 }
 #body {
 	top: 210px;
@@ -25,13 +34,12 @@ body {
 	border-radius: 10px;
 	margin: auto;
 	z-index: 0;
-	background-color: #6699FF;
+	background-color: #2f3b49;
 	box-shadow: 3px 3px 10px 5px #001212;
 	text-align: center;
 }
 #descriptionBarDiv {
 	width: 90%;
-	background-color: #959494;
 	margin: auto;
 	margin-top: 5px;
 	position: relative;
@@ -52,7 +60,6 @@ body {
 
 }
 .headeritem {
-	background-color: #66FF33;
 	width: 20%;
 	border: 2px solid black;
 	border-radius: 5px;
@@ -60,6 +67,8 @@ body {
 	margin: 1%;
 	height: 45px;
 	padding: 10px 10px 10px 10px;
+	box-shadow: 3px 3px 10px 5px #001212;
+	background-color: #2f3b49;
 }
 .skillitem {
 	background-color: #FF3300;
