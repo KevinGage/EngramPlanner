@@ -4,13 +4,11 @@ multiline spans are too long
 
 add description to every item
 
-some skills have generic images, like saddles. get actual images from internet. others missing images
+some skills have generic images, like saddles. get actual images from internet.
 
 restyle table and save div?
 
 change fonts
-
-adjust description bar to look better.
 
 adjust level and skill div css to look better
 
@@ -18,11 +16,7 @@ re-style header
 
 add ETG logo
 
-decide how scrolling will work
-
 restyle the rest of the background
-
-Add disclaimer about ark ownership
 
 add text and link to point people at etg website
 
