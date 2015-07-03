@@ -71,9 +71,8 @@ function buildSkillsTable() {  //builds main table of skill divs
 	$(".skillitem").hover(function() {
 		if (!($(this).data("selected"))) {
 			$(this).animate({opacity: '1'}, 300);
-			
-			updateDescriptionBar($(this).data("skillName"), $(this).data("requires"));
 		}
+		updateDescriptionBar($(this).data("skillName"), $(this).data("requires"));
 	}, function() {
 		if (!($(this).data("selected"))) {
 			$(this).animate({opacity: '0.5'}, 300);
