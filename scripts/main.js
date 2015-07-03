@@ -145,7 +145,8 @@ function totalEngrams() {
 			character.engrams = (1064 + ((x - 59) * 40));
 			break;
 		case (x === 65):
-			character.engrams = (1265);       
+			character.engrams = (1265);
+			break;			
 		default:
 			$("#totalEngrams").text("you a haxor");
 			break;
@@ -388,7 +389,7 @@ function saveCharacter() {
 		'color': 'white'
 	});
 	
-	var charLink = "www.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter);
+	var charLink = "?char=" + btoa(savedCharacter);
 	
 	$overlayDiv.append('<table id="saveTable">');
 	$overlayDiv.append("<tr>");
@@ -398,8 +399,7 @@ function saveCharacter() {
 	$overlayDiv.append("</tr>");
 	$overlayDiv.append("<tr>");
 	$overlayDiv.append("<td>");
-	$overlayDiv.append('<a href="' + charLink + '">' + charLink + '</a>');
-	//$overlayDiv.append("www.enjoythegame.net/arkplanner/?char=" + btoa(savedCharacter));
+	$overlayDiv.append('<a href="' + charLink + '">www.enjoythegame.net/arkplanner/' + charLink + '</a>');
 	$overlayDiv.append("</td>");
 	$overlayDiv.append("</tr>");
 	$overlayDiv.append("<tr>");
